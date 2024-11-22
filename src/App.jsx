@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
+  /*
   const [count, setCount] = useState(0)
 
   return (
@@ -29,7 +30,19 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  ) */
+
+    const [htmlContent, setHtmlContent] = useState('');
+
+    useEffect(() => {
+      fetch('/index.html')
+        .then((response) => response.text())
+        .then((data) => setHtmlContent(data));
+    }, []);
+  
+    return (
+      <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+    );
 }
 
 export default App
